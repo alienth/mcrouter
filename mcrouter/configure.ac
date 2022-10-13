@@ -7,12 +7,7 @@
 
 AC_PREREQ(2.69)
 
-m4_define([mcrouter_version_str], m4_esyscmd_s([cut -d '-' -f 1 VERSION]))
-m4_define([mcrouter_version_suffix], m4_esyscmd_s([sed 's/^[0-9]*:[0-9]*//' VERSION]))
-m4_define([mcrouter_version], m4_translit(mcrouter_version_str, [:], [.]))
-m4_append([mcrouter_version], [.0])
-m4_append([mcrouter_version], [mcrouter_version_suffix])
-AC_INIT([mcrouter], [mcrouter_version], mcrouter@fb.com)
+AC_INIT([mcrouter], m4_esyscmd([tr -d '\n' < VERSION]), mcrouter@fb.com)
 
 AC_ARG_VAR([FBTHRIFT_BIN], [Path to FBThrift compiler])
 AC_CHECK_PROG(have_fbthrift, thrift1, yes, no, path = $FBTHRIFT_BIN)
