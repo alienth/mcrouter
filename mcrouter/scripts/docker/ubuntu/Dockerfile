@@ -2,8 +2,14 @@
 
 FROM            ubuntu:focal
 
+ARG MCROUTER_REPO
+ENV MCROUTER_REPO=${MCROUTER_REPO:-https://github.com/facebook/mcrouter.git}
+
+# Can be a branch or tag name.
+ARG MCROUTER_BRANCH
+RUN : "${MCROUTER_BRANCH:?MCROUTER_BRANCH must be set.}"
+
 ENV             MCROUTER_DIR            /usr/local/mcrouter
-ENV             MCROUTER_REPO           https://github.com/facebook/mcrouter.git
 ENV             DEBIAN_FRONTEND         noninteractive
 
 ENV             PKG_DIR                 $MCROUTER_DIR/pkgs

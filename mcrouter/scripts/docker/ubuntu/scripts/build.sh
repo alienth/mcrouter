@@ -6,7 +6,7 @@
 
 ## Build
 mkdir -p $MCROUTER_DIR/repo
-cd $MCROUTER_DIR/repo && git clone $MCROUTER_REPO
+cd $MCROUTER_DIR/repo && git clone --branch ${MCROUTER_BRANCH} ${MCROUTER_REPO}
 cd $MCROUTER_DIR/repo/mcrouter/mcrouter/scripts
 sed -i 's/sudo //g' ./install_ubuntu_20.04.sh
 sed -i 's/MAKE_ARGS=\"\$@\"/MAKE_ARGS=\"-j$(nproc)\"/g' ./common.sh
